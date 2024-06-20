@@ -1,6 +1,8 @@
-package Jacob.Sorts;
+package FinalProject.Sorts;
 
-import Jacob.SortingVisualizer;
+import FinalProject.Interface.*;
+
+import FinalProject.Interface.SortingVisualizer;
 
 public class MergeSort implements Runnable{
 	

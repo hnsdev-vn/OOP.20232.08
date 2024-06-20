@@ -1,14 +1,12 @@
-package Jacob;
+package FinalProject.Interface;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-import Jacob.Sorts.*;
+import FinalProject.Sorts.*;
 
 public class SortingVisualizer {
-
 	private static Thread sortingThread;
-
 	public static VisualizerFrame frame;
 	public static Integer[] toBeSorted;
 	public static boolean isSorting = false;
@@ -40,7 +38,7 @@ public class SortingVisualizer {
 		// If we're using incremental values, they are already sorted. This shuffles it.
 		if (stepped) {
 			ArrayList<Integer> shuffleThis = new ArrayList<>();
-			for (int i = 0; i < toBeSorted.length; i++) {
+			for (int i = 1; i < toBeSorted.length; i++) {
 				shuffleThis.add(toBeSorted[i]);
 			}
 			Collections.shuffle(shuffleThis);
@@ -52,73 +50,34 @@ public class SortingVisualizer {
 	public static void startSort(String type){
 
 		if (sortingThread == null || !isSorting){
-
 			resetArray();
-
 			isSorting = true;
-
 			switch(type){
-			case "Bubble":
-				sortingThread = new Thread(new BubbleSort(toBeSorted, frame, false));
-				break;
+				case "Selection":
+					sortingThread = new Thread(new SelectionSort(toBeSorted, frame));
+					break;
 
-			case "Selection":
-				sortingThread = new Thread(new SelectionSort(toBeSorted, frame, false));
-				break;
+				case "Merge":
+					sortingThread = new Thread(new MergeSort());
+					break;
 
-			case "Insertion":
-				sortingThread = new Thread(new InsertionSort(toBeSorted, frame, false));
-				break;
+				case "Shell":
+					sortingThread = new Thread(new ShellSort());
+					break;
 
-			case "Gnome":
-				sortingThread = new Thread(new GnomeSort(toBeSorted, frame, false));
-				break;
+				case "Insertion":
+					sortingThread = new Thread(new InsertionSort(toBeSorted, frame));
+					break;
 
-			case "Merge":
-				sortingThread = new Thread(new MergeSort());
-				break;
+				case "Bubble":
+					sortingThread = new Thread(new BubbleSort(toBeSorted, frame));
+					break;
 
-			case "Radix LSD":
-				sortingThread = new Thread(new RadixSort(toBeSorted, frame, true));
-				break;
-
-			case "Radix MSD":
-				sortingThread = new Thread(new RadixSort(toBeSorted, frame, false));
-				break;
-
-			case "Shell":
-				sortingThread = new Thread(new ShellSort());
-				break;
-
-			case "Quandrix":
-			  sortingThread = new Thread(new QuandrixSort());
-				break;
-
-			case "Bubble(fast)":
-				sortingThread = new Thread(new BubbleSort(toBeSorted, frame, true));
-				break;
-
-			case "Selection(fast)":
-				sortingThread = new Thread(new SelectionSort(toBeSorted, frame, true));
-				break;
-
-			case "Insertion(fast)":
-				sortingThread = new Thread(new InsertionSort(toBeSorted, frame, true));
-				break;
-
-			case "Gnome(fast)":
-				sortingThread = new Thread(new GnomeSort(toBeSorted, frame, true));
-				break;
-
-			default:
-				isSorting = false;
-				return;
+				default:
+					isSorting = false;
+					return;
 			}
-
 			sortingThread.start();
-
 		}
-
 	}
-
 }

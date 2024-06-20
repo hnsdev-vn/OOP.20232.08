@@ -1,14 +1,14 @@
-package Jacob.Sorts;
+package FinalProject.Sorts;
 
-import Jacob.SortingVisualizer;
+import FinalProject.Interface.SortingVisualizer;
 
 public class ShellSort implements Runnable{
-	
+
 	public void run() {
 		int temp = 0;
 		Integer[] toBeSorted = SortingVisualizer.toBeSorted;
 		int j = 0;
-		
+
 		for(int gap = toBeSorted.length/2; gap > 0; gap/=2){
 			for(int i = gap; i<toBeSorted.length; i++){
 				temp = toBeSorted[i];
@@ -24,7 +24,7 @@ public class ShellSort implements Runnable{
 				toBeSorted[j] = temp;
 			}
 		}
-		
+
 		SortingVisualizer.isSorting=false;
 	}
 }
